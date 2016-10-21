@@ -59,7 +59,9 @@
     _productTitleLabel.text = _product.name;
     _priceLabel.text = [Utils getLocalCurrencyForPrice:_product.price];
     //Redundent code, remove it later
-    if(!_product.isInCart)
+    
+    int val = _product.isInCart;
+    if(val == 0)
     {
         self.cartButton.tag = 0;
         [_cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];

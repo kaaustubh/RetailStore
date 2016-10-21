@@ -90,7 +90,7 @@
         product.price = prodDictionary[@"price"];
         product.image = prodDictionary[@"imagename"];
         product.category = prodDictionary[@"category"];
-        product.isInCart = [NSNumber numberWithBool:false];
+        product.isInCart = [NSNumber numberWithBool:FALSE];
         [self.products addObject:product];
     }
     

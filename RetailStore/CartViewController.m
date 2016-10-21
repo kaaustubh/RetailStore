@@ -80,11 +80,6 @@
 }
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[[ProductManager sharedInstance] getCartProducts] count];
-}
-
 #pragma UItableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
