@@ -16,5 +16,8 @@
 -(NSMutableArray*)getAllCategories;
 -(NSMutableArray *)getProductsForCategory:(NSString*)category;
 -(bool)addProductToCart:(Product*)product;
+-(NSMutableArray *)getCartProducts;
+-(bool)removeProductToCart:(Product*)product;
+-(NSString*)getCartValue;
 
 @end

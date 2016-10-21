@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "Utils.h"
+#import "ProductManager.h"
 
 @interface ProductDetailViewController ()
 
@@ -45,20 +46,33 @@
 */
 
 
-
 -(void)updateView
 {
     _productTitleLabel.text = _product.name;
     _priceLabel.text = [Utils getLocalCurrencyForPrice:_product.price];
-    NSString *cartButtonTitle;
-    if(_product.isInCart)
-        cartButtonTitle = @"Add to cart";
-    else
-        cartButtonTitle = @"Remove from cart";
-    
+    [self toggleCartProduct];
     _productImageView.image = [UIImage imageNamed:_product.image];
-    
-    [_cartButton setTitle:cartButtonTitle forState:UIControlStateNormal];
+}
+
+-(IBAction)cartButonTapped:(id)sender
+{
+    [self toggleCartProduct];
+}
+
+-(void)toggleCartProduct
+{
+    if(_cartButton.tag)
+    {
+        [[ProductManager sharedInstance] addProductToCart:_product];
+        _cartButton.tag=1;
+        [_cartButton setTitle:@"Remove from Cart" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [[ProductManager sharedInstance] removeProductToCart:_product];
+        [_cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
+        _cartButton.tag=0;
+    }
 }
 
 @end

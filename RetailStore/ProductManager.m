@@ -178,5 +178,44 @@
     return success;
 }
 
+-(bool)removeProductToCart:(Product*)product
+{
+    bool success = false;
+    product.isInCart = [NSNumber numberWithBool:NO];
+    NSError *error = nil;
+    // Save the object to persistent store
+    if (![[self managedObjectContext] save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        return false;
+    }
+    else success = true;
+    
+    return success;
+}
+
+
+-(NSMutableArray *)getCartProducts
+{
+    NSMutableArray *products;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isInCart == 1"];
+    NSArray *filtered = [self.products filteredArrayUsingPredicate:predicate];
+    return [filtered mutableCopy];
+    
+    return products;
+}
+
+-(NSString*)getCartValue
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isInCart == 1"];
+    NSArray *filtered = [self.products filteredArrayUsingPredicate:predicate];
+    float total=0;
+    for (Product *product in filtered)
+    {
+        total+=product.price.floatValue;
+    }
+    
+    return [NSString stringWithFormat:@"%f",total];
+}
+
 
 @end
