@@ -60,7 +60,7 @@
     _priceLabel.text = [Utils getLocalCurrencyForPrice:_product.price];
     //Redundent code, remove it later
     
-    int val = _product.isInCart;
+    int val = (int)_product.isInCart;
     if(val == 0)
     {
         self.cartButton.tag = 0;

@@ -24,6 +24,16 @@
 		32DB0E101DBA5BF000334C1D /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E0E1DBA5BF000334C1D /* Product.m */; };
 		32DB0E131DBA975B00334C1D /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E121DBA975B00334C1D /* CartTableViewCell.m */; };
 		32DB0E161DBA97C300334C1D /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E151DBA97C300334C1D /* CartViewController.m */; };
+		32DB0E181DBAAD1C00334C1D /* ProductManagerTestSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E171DBAAD1C00334C1D /* ProductManagerTestSpecs.m */; };
+		32DB0E191DBAAD2E00334C1D /* Product+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E0C1DBA5BF000334C1D /* Product+CoreDataProperties.m */; };
+		32DB0E1A1DBAAD2E00334C1D /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E0E1DBA5BF000334C1D /* Product.m */; };
+		32DB0E1B1DBAAD2E00334C1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F82501DBA1EEF00B267CA /* AppDelegate.m */; };
+		32DB0E1C1DBAAD2E00334C1D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F82531DBA1EEF00B267CA /* ViewController.m */; };
+		32DB0E1D1DBAAD2E00334C1D /* ProductManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 323F82891DBA1F4E00B267CA /* ProductManager.m */; };
+		32DB0E1E1DBAAD2E00334C1D /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E061DBA508800334C1D /* Utils.m */; };
+		32DB0E1F1DBAAD2E00334C1D /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E091DBA585400334C1D /* ProductDetailViewController.m */; };
+		32DB0E201DBAAD2E00334C1D /* CartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E121DBA975B00334C1D /* CartTableViewCell.m */; };
+		32DB0E211DBAAD2E00334C1D /* CartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB0E151DBA97C300334C1D /* CartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +86,7 @@
 		32DB0E121DBA975B00334C1D /* CartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTableViewCell.m; sourceTree = "<group>"; };
 		32DB0E141DBA97C300334C1D /* CartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartViewController.h; sourceTree = "<group>"; };
 		32DB0E151DBA97C300334C1D /* CartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartViewController.m; sourceTree = "<group>"; };
+		32DB0E171DBAAD1C00334C1D /* ProductManagerTestSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductManagerTestSpecs.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +176,7 @@
 			children = (
 				323F82691DBA1EEF00B267CA /* RetailStoreTests.m */,
 				323F826B1DBA1EEF00B267CA /* Info.plist */,
+				32DB0E171DBAAD1C00334C1D /* ProductManagerTestSpecs.m */,
 			);
 			path = RetailStoreTests;
 			sourceTree = "<group>";
@@ -338,7 +350,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32DB0E1C1DBAAD2E00334C1D /* ViewController.m in Sources */,
+				32DB0E1D1DBAAD2E00334C1D /* ProductManager.m in Sources */,
+				32DB0E181DBAAD1C00334C1D /* ProductManagerTestSpecs.m in Sources */,
+				32DB0E1F1DBAAD2E00334C1D /* ProductDetailViewController.m in Sources */,
+				32DB0E211DBAAD2E00334C1D /* CartViewController.m in Sources */,
+				32DB0E1E1DBAAD2E00334C1D /* Utils.m in Sources */,
+				32DB0E201DBAAD2E00334C1D /* CartTableViewCell.m in Sources */,
+				32DB0E1A1DBAAD2E00334C1D /* Product.m in Sources */,
 				323F826A1DBA1EEF00B267CA /* RetailStoreTests.m in Sources */,
+				32DB0E191DBAAD2E00334C1D /* Product+CoreDataProperties.m in Sources */,
+				32DB0E1B1DBAAD2E00334C1D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
