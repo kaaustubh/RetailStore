@@ -25,11 +25,17 @@
 - (void)viewDidLoad {
     // Do any additional setup after loading the view.
     [super viewDidLoad];
-    [self updateView];
+    
     self.title = @"Product Details";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show Cart" style:UIBarButtonItemStylePlain target:self action:@selector(showCartButtonTapped:)];
     self.navigationItem.rightBarButtonItem = anotherButton;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateView];
 }
 
 -(IBAction)showCartButtonTapped:(id)sender

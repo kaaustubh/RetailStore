@@ -35,8 +35,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear: animated];
+    [self reloadView];
+}
+
+-(void)reloadView
+{
     [self.tableView reloadData];
-     self.totalPriceLabel.text = [Utils getLocalCurrencyForPrice:[[ProductManager sharedInstance] getCartValue]];
+    self.totalPriceLabel.text = [Utils getLocalCurrencyForPrice:[[ProductManager sharedInstance] getCartValue]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,6 +102,21 @@
     {
         ProductDetailViewController *destinationViewController = (ProductDetailViewController*) segue.destinationViewController;
         destinationViewController.product = _selectedProduct;
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableArray *productsForThisCategory = [[ProductManager sharedInstance] getCartProducts];
+        
+        Product *product = [productsForThisCategory objectAtIndex:indexPath.row];
+        [[ProductManager sharedInstance] removeProductToCart:product];
+        [self reloadView];
     }
 }
 
