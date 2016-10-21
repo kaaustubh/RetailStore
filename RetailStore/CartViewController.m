@@ -11,6 +11,7 @@
 #import "ProductManager.h"
 #import "Utils.h"
 #import "ProductDetailViewController.h"
+#import "CartTableViewCell.h"
 
 @interface CartViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -24,10 +25,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView reloadData];
-    self.totalPriceLabel.text = [Utils getLocalCurrencyForPrice:[[ProductManager sharedInstance] getCartValue]];
+    
+    self.title = @"Your shopping cart";
+   
 
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    [self.tableView reloadData];
+     self.totalPriceLabel.text = [Utils getLocalCurrencyForPrice:[[ProductManager sharedInstance] getCartValue]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,8 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSMutableArray *productsForThisCategory = [[ProductManager sharedInstance] getProductsForCategory:[[[ProductManager sharedInstance] getAllCategories] objectAtIndex:section]];
-    return [productsForThisCategory count];
+    return [[[ProductManager sharedInstance] getCartProducts] count];
 }
 
 
@@ -58,16 +66,16 @@
 {
     static NSString *simpleTableIdentifier = @"CartCellId";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    CartTableViewCell *cell = (CartTableViewCell*)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+        cell = (CartTableViewCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
     NSMutableArray *productsForThisCategory = [[ProductManager sharedInstance] getCartProducts];
     
     Product *product = [productsForThisCategory objectAtIndex:indexPath.row];
-    cell.textLabel.text = product.name;
-    cell.detailTextLabel.text = [Utils getLocalCurrencyForPrice:product.price];
+    cell.productNameLabel.text = product.name;
+    cell.priceLabel.text = [Utils getLocalCurrencyForPrice:product.price];
     return cell;
 }
 
@@ -83,14 +91,14 @@
 {
     Product *product =[[[ProductManager sharedInstance] getCartProducts] objectAtIndex:indexPath.row];
     _selectedProduct = product;
-    [self performSegueWithIdentifier:@"ProductDetailSegueId" sender:self];
+    [self performSegueWithIdentifier:@"ProductDetailSegue" sender:self];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier caseInsensitiveCompare:@"ProductDetailSegueId"] == NSOrderedSame)
+    if([segue.identifier caseInsensitiveCompare:@"ProductDetailSegue"] == NSOrderedSame)
     {
         ProductDetailViewController *destinationViewController = (ProductDetailViewController*) segue.destinationViewController;
         destinationViewController.product = _selectedProduct;

@@ -89,6 +89,9 @@
                                     <constraint firstAttribute="height" constant="30" id="teY-5A-ADa"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cartButonTapped:" destination="uPU-DF-0KA" eventType="touchUpInside" id="fcG-yf-QVk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,10 +121,10 @@
             </objects>
             <point key="canvasLocation" x="2008" y="358"/>
         </scene>
-        <!--View Controller-->
+        <!--Cart View Controller-->
         <scene sceneID="5nq-f5-HOd">
             <objects>
-                <viewController id="B4G-WZ-BHI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CartControllerId" id="B4G-WZ-BHI" customClass="CartViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kWF-Cu-RfC"/>
                         <viewControllerLayoutGuide type="bottom" id="rtm-5x-vfJ"/>
@@ -141,7 +144,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lw-36-5kB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Lw-36-5kB">
                                                     <rect key="frame" x="10" y="10" width="220" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="220" id="lmL-xC-g03"/>
@@ -151,7 +154,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3r-fP-dee">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3r-fP-dee">
                                                     <rect key="frame" x="245" y="11" width="350" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="u45-Vc-cuL"/>
@@ -175,6 +178,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="B4G-WZ-BHI" id="HMH-lS-fic"/>
+                                    <outlet property="delegate" destination="B4G-WZ-BHI" id="jhU-GZ-f5t"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qg4-KJ-s5Y">
                                 <rect key="frame" x="190" y="545" width="220" height="35"/>
@@ -197,6 +204,11 @@
                             <constraint firstItem="LCy-kK-KoY" firstAttribute="top" secondItem="kWF-Cu-RfC" secondAttribute="bottom" id="fwc-X0-PY4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="LCy-kK-KoY" id="v1Q-5Q-l0C"/>
+                        <outlet property="totalPriceLabel" destination="Qg4-KJ-s5Y" id="L5e-kC-mdt"/>
+                        <segue destination="uPU-DF-0KA" kind="show" identifier="ProductDetailSegue" id="cBK-m0-T9r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wcf-5d-Eiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,4 +233,7 @@
             <point key="canvasLocation" x="218" y="1016"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cBK-m0-T9r"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 #import "ProductDetailViewController.h"
 #import "Utils.h"
+#import "CartViewController.h"
 #import "ProductManager.h"
 
 @interface ProductDetailViewController ()
@@ -22,13 +23,20 @@
 @implementation ProductDetailViewController
 
 - (void)viewDidLoad {
+    // Do any additional setup after loading the view.
     [super viewDidLoad];
     [self updateView];
+    self.title = @"Product Details";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    // Do any additional setup after loading the view.
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show Cart" style:UIBarButtonItemStylePlain target:self action:@selector(showCartButtonTapped:)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
 }
 
-
+-(IBAction)showCartButtonTapped:(id)sender
+{
+    CartViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"CartControllerId"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,7 +58,17 @@
 {
     _productTitleLabel.text = _product.name;
     _priceLabel.text = [Utils getLocalCurrencyForPrice:_product.price];
-    [self toggleCartProduct];
+    //Redundent code, remove it later
+    if(!_product.isInCart)
+    {
+        self.cartButton.tag = 0;
+        [_cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
+    }
+    else
+    {
+        self.cartButton.tag = 1;
+        [_cartButton setTitle:@"Remove from Cart" forState:UIControlStateNormal];
+    }
     _productImageView.image = [UIImage imageNamed:_product.image];
 }
 
@@ -61,17 +79,19 @@
 
 -(void)toggleCartProduct
 {
-    if(_cartButton.tag)
-    {
-        [[ProductManager sharedInstance] addProductToCart:_product];
-        _cartButton.tag=1;
-        [_cartButton setTitle:@"Remove from Cart" forState:UIControlStateNormal];
-    }
-    else
+    if(_cartButton.tag == 1)
     {
         [[ProductManager sharedInstance] removeProductToCart:_product];
         [_cartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
         _cartButton.tag=0;
+    }
+    else
+    {
+        [[ProductManager sharedInstance] addProductToCart:_product];
+        _cartButton.tag=1;
+        [_cartButton setTitle:@"Remove from Cart" forState:UIControlStateNormal];
+        
+        
     }
 }
 

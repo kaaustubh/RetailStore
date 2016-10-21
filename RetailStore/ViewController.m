@@ -10,6 +10,7 @@
 #import "Utils.h"
 #import "ProductManager.h"
 #import "ProductDetailViewController.h"
+#import "CartViewController.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -23,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView reloadData];
+    self.title = @"Products";
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show Cart" style:UIBarButtonItemStylePlain target:self action:@selector(showCartButtonTapped:)];
     self.navigationItem.rightBarButtonItem = anotherButton;
     
@@ -32,7 +34,8 @@
 
 -(IBAction)showCartButtonTapped:(id)sender
 {
-    
+    CartViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"CartControllerId"];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
